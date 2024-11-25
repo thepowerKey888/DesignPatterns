@@ -15,5 +15,22 @@ public class Main {
 
         TextFile file = new TextFile(data);
 
+        //User Story: #4
+        int option = 0;
+        switch (option){
+            case 0:
+                file.setFormat(new PlainTextFormat());
+                break;
+            case 1:
+                file.setFormat(new HTMLFormat());
+                break;
+            case 2:
+                file.setFormat(new MarkdownFormat());
+                break;
+
+            default:
+                file.setFormat(new PlainTextFormat());
+        }
+
     }
 }

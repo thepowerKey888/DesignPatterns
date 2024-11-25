@@ -45,5 +45,25 @@ public class TextFile {
         System.out.println("</html>");
     }
 
+    //User Story: #3
+    public void printMarkdown(){
+
+        String[] options = {"**", "***", "<sub>","~~", "_"};
+
+        Random rng = new Random();
+        rng.nextInt();
+
+        System.out.println("#" + fileContent.get(0)); //header
+
+        for(int i = 1; i < fileContent.size(); i++){
+            int number = rng.nextInt(options.length); //setting bound to length of options array
+            String option = options[number];
+            System.out.println(option + fileContent.get(i) + option);
+        }
+
+        System.out.println("");
+        System.out.println("");
+    }
+
 
 }
