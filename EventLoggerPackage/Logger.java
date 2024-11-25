@@ -23,12 +23,17 @@ import java.util.List;
             return instance;
         }
 
-        //log messages
-        public void log(String message) {
-            String timestamp = dateFormat.format(new Date());
-            String formattedMessage = timestamp + " - " + message;
+        //User Story 2: Logging messages with different severity levels
+        public void log(String message, String severity) {
+            String formattedMessage = formatMessage(message, severity);
             logHistory.add(formattedMessage);
-            System.out.println(formattedMessage);
+            System.out.println(formattedMessage); // Default: Print to console
+        }
+
+        //helper method (formats log messages with severity and timestamp)
+        private String formatMessage(String message, String severity) {
+            String timestamp = dateFormat.format(new Date());
+            return "[" + severity + "] " + timestamp + " - " + message;
         }
 
         //retrieve log history
