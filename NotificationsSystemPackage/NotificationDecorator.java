@@ -1,6 +1,6 @@
 package NotificationsSystemPackage;
 
-public class NotificationDecorator implements Notification{
+public abstract class NotificationDecorator implements Notification{
 
     protected Notification wrappedNotification;
 

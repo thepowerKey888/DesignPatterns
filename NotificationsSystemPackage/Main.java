@@ -1,22 +1,30 @@
 package NotificationsSystemPackage;
-
+import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
 
-        //user story 1
+        Scanner scanner = new Scanner(System.in);
+
+       
         Notification basicNotification = new BasicNotification();
-        basicNotification.send("System update: Your app has a new feature!");
 
-        //user story 2
-        Notification smsNotification = new SMSNotification(basicNotification);
-        smsNotification.send("System update: New security patch available!");
+        //user story 5
+        NotificationPreferences preferences = new NotificationPreferences();
+        System.out.println("Customize your notifications by entering one notification channel at a time when prompted then press ENTER.\nType 'done' and press ENTER when finished.");
+        while (true) {
+            System.out.print("Select channel (SMS, Email, Slack): ");
+            String channel = scanner.nextLine();
+            if (channel.equalsIgnoreCase("done")) {
+                break;
+            }
+            preferences.selectChannel(channel);
+        }
 
-        //user story 3
-        Notification emailNotification = new EmailNotification(basicNotification);
-        emailNotification.send("System update: Your account settings have been updated!");
+        Notification customizedNotification = preferences.configure(basicNotification);
+        customizedNotification.send("System update: Your app has a new feature!");
 
-        Notification slackNotification = new SlackNotification(basicNotification);
-        slackNotification.send("System Update: Your account settings have been updated!");
+        scanner.close();
     }
-}
+    }
+
