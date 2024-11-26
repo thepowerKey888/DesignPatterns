@@ -17,12 +17,18 @@ public class Main {
         fileLogger.log("Debugging the system", LogLevel.DEBUG);
         fileLogger.log("An error occurred", LogLevel.ERROR);
 
+        //user story 7
+        FileLoggerDecorator fileLoggerDecorator = (FileLoggerDecorator) fileLogger;
+        fileLoggerDecorator.archiveLogs();
+
         //user story 3: Retrieve and review log history
         System.out.println("\nLog History:");
         for (String log : fileLogger.getLogHistory()) {
             System.out.println(log);
         }
 
+        //archive every 10 min
+        fileLoggerDecorator.schedulePeriodicArchiving(600000);
         fileLogger.flush();
     }
 }
