@@ -10,7 +10,8 @@ public class SlackNotification extends NotificationDecorator{
     @Override
     public void send(String message) {
         super.send(message);
-        sendSlackMessage(message);
+        System.out.println("Sending Slack notification: " + message);
+        NotificationHistory.getInstance().addHistory("Slack");
     }
 
     private void sendSlackMessage(String message) {

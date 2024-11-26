@@ -10,7 +10,8 @@ public class EmailNotification extends NotificationDecorator{
     @Override
     public void send(String message) {
         super.send(message);
-        sendEmail(message);
+        System.out.println("Sending email notification: " + message);
+        NotificationHistory.getInstance().addHistory("Email");
     }
 
     private void sendEmail(String message) {

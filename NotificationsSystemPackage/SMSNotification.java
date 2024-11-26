@@ -10,7 +10,8 @@ public class SMSNotification extends NotificationDecorator{
     @Override
     public void send(String message) {
         super.send(message);
-        sendSMS(message);
+        System.out.println("Sending SMS notification: " + message);
+        NotificationHistory.getInstance().addHistory("SMS");
     }
 
     private void sendSMS(String message) {

@@ -10,7 +10,8 @@ public class WhatsAppNotification extends NotificationDecorator {
     @Override
     public void send(String message) {
         super.send(message);
-        sendWhatsAppMessage(message);
+        System.out.println("Sending WhatsApp notification: " + message);
+        NotificationHistory.getInstance().addHistory("WhatsApp");
     }
 
     private void sendWhatsAppMessage(String message) {
