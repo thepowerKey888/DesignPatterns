@@ -15,12 +15,23 @@ public class Main {
 
         System.out.println("Customize your notifications by entering one notification channel at a time when prompted then press ENTER.\nType 'done' and press ENTER when finished.");
         while (true) {
-            System.out.print("Select channel (SMS, Email, Slack, WhatsApp, Push): ");
-            String channel = scanner.nextLine();
-            if (channel.equalsIgnoreCase("done")) {
+            System.out.print("Would you like to enable or disable a channel? (enable/disable): ");
+            String action = scanner.nextLine();
+
+            if (action.equalsIgnoreCase("done")) {
                 break;
             }
-            preferences.selectChannel(channel);
+
+            System.out.print("Select channel (SMS, Email, Slack, WhatsApp, Push): ");
+            String channel = scanner.nextLine();
+
+            if (action.equalsIgnoreCase("enable")) {
+                preferences.selectChannel(channel);
+            } else if (action.equalsIgnoreCase("disable")) {
+                preferences.deselectChannel(channel);
+            } else {
+                System.out.println("Invalid action. Please enter 'enable' or 'disable'.");
+            }
         }
 
         List<Notification> customizedNotifications = preferences.configure(basicNotification);

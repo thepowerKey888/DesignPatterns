@@ -8,7 +8,21 @@ public class NotificationPreferences {
     private List<String> selectedChannels = new ArrayList<>();
 
     public void selectChannel(String channel) {
-        selectedChannels.add(channel);
+        if (!selectedChannels.contains(channel)) {
+            selectedChannels.add(channel);
+            System.out.println(channel + " enabled.");
+        } else {
+            System.out.println(channel + " is already enabled.");
+        }
+    }
+
+    public void deselectChannel(String channel) {
+        if (selectedChannels.contains(channel)) {
+            selectedChannels.remove(channel);
+            System.out.println(channel + " disabled.");
+        } else {
+            System.out.println(channel + " is not enabled.");
+        }
     }
     public List<Notification> configure(Notification baseNotification) {
         List<Notification> decoratedNotifications = new ArrayList<>();
@@ -22,30 +36,5 @@ public class NotificationPreferences {
         return decoratedNotifications;
     }
 
-//    public Notification configure(Notification baseNotification) {
-//        Notification decoratedNotification = baseNotification;
-//
-//        for (String channel : selectedChannels) {
-//            switch (channel.toLowerCase()) {
-//                case "sms":
-//                    decoratedNotification = new SMSNotification(decoratedNotification);
-//                    break;
-//                case "email":
-//                    decoratedNotification = new EmailNotification(decoratedNotification);
-//                    break;
-//                case "slack":
-//                    decoratedNotification = new SlackNotification(decoratedNotification);
-//                    break;
-//                case "whatsapp":
-//                    decoratedNotification = new WhatsAppNotification(decoratedNotification);
-//                    break;
-//                case "push":
-//                    decoratedNotification = new PushNotification(decoratedNotification);
-//                    break;
-//                default:
-//                    System.out.println("Unknown channel: " + channel);
-//            }
-//        }
-//        return decoratedNotification;
-//    }
+
 }
