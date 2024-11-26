@@ -13,7 +13,7 @@ class FileLoggerDecorator extends LoggerDecorator {
     }
 
     @Override
-    public void log(String message, LogLevel level) {
+    public synchronized void log(String message, LogLevel level) {
         super.log(message, level); //log message to decorated logger
 
         //writes message to log file

@@ -14,7 +14,7 @@ class BasicLogger implements Logger {
 
     // user story 1: Centralized logging (basic logger)
     @Override
-    public void log(String message, LogLevel level) {
+    public synchronized void log(String message, LogLevel level) {
         String logMessage = level.name() + ": " + message;
         logHistory.add(logMessage);
 
@@ -23,12 +23,12 @@ class BasicLogger implements Logger {
 
     // user story 3: Retrieve history of logged messages
     @Override
-    public List<String> getLogHistory() {
+    public synchronized  List<String> getLogHistory() {
         return logHistory;
     }
 
     @Override
-    public void flush() {
+    public synchronized void flush() {
         logHistory.clear();
     }
 }

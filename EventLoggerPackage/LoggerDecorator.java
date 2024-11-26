@@ -12,18 +12,18 @@ public abstract class LoggerDecorator implements Logger{
 
     //user story 1: Consistent logging through decoration
     @Override
-    public void log(String message, LogLevel level) {
+    public synchronized void log(String message, LogLevel level) {
         logger.log(message, level);
     }
 
     //user story 3: Retrieve history of logged messages
     @Override
-    public List<String> getLogHistory() {
+    public synchronized List<String> getLogHistory() {
         return logger.getLogHistory();
     }
 
     @Override
-    public void flush() {
+    public synchronized void flush() {
         logger.flush();
     }
 }
