@@ -6,9 +6,27 @@ public class Main {
 
         //user story 1
         Logger logger = Logger.getInstance();
-        System.out.println("Current working directory: " + System.getProperty("user.dir"));
 
+        //multiple threads to log messages
+        Thread thread1 = new Thread(() -> {
+            logger.log("Thread 1", "Logging from thread 1");
+            logger.log("INFO", "This is an informational message from thread 1");
+        });
 
+        Thread thread2 = new Thread(() -> {
+            logger.log("Thread 2", "Logging from thread 2");
+            logger.log("ERROR", "An error occurred in thread 2");
+        });
+
+        thread1.start();
+        thread2.start();
+
+        try {
+            thread1.join();
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
         //put logger output to file for retaining logs

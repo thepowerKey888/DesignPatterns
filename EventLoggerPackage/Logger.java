@@ -2,6 +2,7 @@ package EventLoggerPackage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 public class Logger {
 
     //user story 1
@@ -18,9 +19,13 @@ public class Logger {
     }
 
     //get the single instance of the Logger
-    public static synchronized Logger getInstance() {
+    public static Logger getInstance() {
         if (instance == null) {
-            instance = new Logger();
+            synchronized (Logger.class) {  //ensure thread-safe instantiation
+                if (instance == null) {
+                    instance = new Logger();
+                }
+            }
         }
         return instance;
     }
@@ -37,8 +42,7 @@ public class Logger {
         logOutput.write(logMessage);
     }
 
-    //user story 2
-    //log messages with different severity levels
+    //user story 2 log messages with different severity levels
     public void log(String severity, String message) {
         String logMessage = "[" + severity.toUpperCase() + "] " + message;
         logHistory.add(logMessage);
