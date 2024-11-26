@@ -11,6 +11,8 @@ public class Main {
         LogDestination fileDestination = new FileLogDestination("app.log"); // Logs to file
         LogDestination remoteDestination = new RemoteLogDestination("http://remote-log-server.com"); // Logs to remote
 
+        //user story 8
+        Logger timestampLogger = new TimestampLoggerDecorator(basicLogger);
 
         //user story 4: Log to console
         Logger consoleLogger = new ConsoleLoggerDecorator(basicLogger);
