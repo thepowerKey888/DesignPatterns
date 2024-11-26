@@ -30,7 +30,7 @@ public class Main {
 
 
         //put logger output to file for retaining logs
-        logger.setLogOutput(new FileLogOutput("logs.txt"));
+        logger.setLogOutput(new FileLogOutput("logs.txt")); //user story 8 dynamically configuring log output
         //user story 2
         logger.log("WARN", "This is a warning message");
         logger.log("ERROR", "An error has occurred");
@@ -39,6 +39,10 @@ public class Main {
         for (String log : logger.getLogHistory()) {
             System.out.println(log);
         }
+
+       
+        System.out.println("\nArchiving logs on-demand...");
+        logger.archiveLogsOnDemand();
 
     }
 }
