@@ -22,5 +22,11 @@ public class Logger {
         System.out.println("[LOG] " + message);
     }
 
+    //user story 2
+    //log messages with different severity levels
+    public void log(String severity, String message) {
+        System.out.println("[" + severity.toUpperCase() + "] " + message);
+    }
+
 
 }
