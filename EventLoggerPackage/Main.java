@@ -6,11 +6,15 @@ public class Main {
 
         //user story 1
         Logger logger = Logger.getInstance();
+        System.out.println("Current working directory: " + System.getProperty("user.dir"));
 
+
+
+
+        //put logger output to file for retaining logs
+        logger.setLogOutput(new FileLogOutput("logs.txt"));
         //user story 2
-        logger.log("Application started");
-        logger.log("INFO", "This is a message");
-        logger.log("DEBUG", "There's a bug in the code!");
+        logger.log("WARN", "This is a warning message");
         logger.log("ERROR", "An error has occurred");
 
         System.out.println("\nLog History:");

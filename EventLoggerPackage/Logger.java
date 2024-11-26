@@ -34,7 +34,7 @@ public class Logger {
     public void log(String message) {
         String logMessage = "[LOG] " + message;
         logHistory.add(logMessage); //user story 3
-        System.out.println(logMessage);
+        logOutput.write(logMessage);
     }
 
     //user story 2
@@ -42,7 +42,7 @@ public class Logger {
     public void log(String severity, String message) {
         String logMessage = "[" + severity.toUpperCase() + "] " + message;
         logHistory.add(logMessage);
-        System.out.println(logMessage);
+        logOutput.write(logMessage);
     }
 
     //retrieve the history of logged messages
