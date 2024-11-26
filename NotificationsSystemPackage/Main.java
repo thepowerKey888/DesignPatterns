@@ -11,5 +11,10 @@ public class Main {
         //user story 2
         Notification smsNotification = new SMSNotification(basicNotification);
         smsNotification.send("System update: New security patch available!");
+
+        //user story 3
+        Notification emailNotification = new EmailNotification(basicNotification);
+        emailNotification.send("System update: Your account settings have been updated!");
+
     }
 }
