@@ -9,8 +9,12 @@ public class Logger {
 
     //user story 3
     private List<String> logHistory;
+
+    //user story 4
+    private LogOutput logOutput;
     private Logger() {
         logHistory = new ArrayList<>();
+        logOutput = new ConsoleLogOutput();
     }
 
     //get the single instance of the Logger
@@ -19,6 +23,11 @@ public class Logger {
             instance = new Logger();
         }
         return instance;
+    }
+
+    //user story 4: set a custom log output destination (if needed in the future)
+    public void setLogOutput(LogOutput logOutput) {
+        this.logOutput = logOutput;
     }
 
     //log messages
