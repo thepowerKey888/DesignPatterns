@@ -25,6 +25,9 @@ public class NotificationPreferences {
                 case "slack":
                     decoratedNotification = new SlackNotification(decoratedNotification);
                     break;
+                case "whatsapp":
+                    decoratedNotification = new WhatsAppNotification(decoratedNotification);
+                    break;
                 default:
                     System.out.println("Unknown channel: " + channel);
             }

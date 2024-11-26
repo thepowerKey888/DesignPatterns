@@ -6,14 +6,14 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-       
+
         Notification basicNotification = new BasicNotification();
 
         //user story 5
         NotificationPreferences preferences = new NotificationPreferences();
         System.out.println("Customize your notifications by entering one notification channel at a time when prompted then press ENTER.\nType 'done' and press ENTER when finished.");
         while (true) {
-            System.out.print("Select channel (SMS, Email, Slack): ");
+            System.out.print("Select channel (SMS, Email, Slack, WhatsApp): ");
             String channel = scanner.nextLine();
             if (channel.equalsIgnoreCase("done")) {
                 break;
@@ -26,5 +26,5 @@ public class Main {
 
         scanner.close();
     }
-    }
+}
 
