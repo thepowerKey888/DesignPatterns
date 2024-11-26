@@ -8,5 +8,5 @@ public interface Logger {
         //user story 3: Retrieve history of logged messages
         List<String> getLogHistory();
         void flush();
-
+        void setLogDestination(LogDestination destination); //set the output destination
 }

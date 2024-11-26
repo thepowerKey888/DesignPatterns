@@ -6,11 +6,19 @@ public class Main {
         //user story 1: Centralized logger instance
         Logger basicLogger = new BasicLogger();
 
+        //user story8 dynamically set output destination (console, file, or remote)
+        LogDestination consoleDestination = new ConsoleLogDestination(); // Logs to console
+        LogDestination fileDestination = new FileLogDestination("app.log"); // Logs to file
+        LogDestination remoteDestination = new RemoteLogDestination("http://remote-log-server.com"); // Logs to remote
+
+
         //user story 4: Log to console
         Logger consoleLogger = new ConsoleLoggerDecorator(basicLogger);
-
-        //log to console & file
         Logger fileLogger = new FileLoggerDecorator(consoleLogger, "app.log");
+
+        //set the log destination to the console
+        consoleLogger.setLogDestination(consoleDestination);
+        fileLogger.setLogDestination(fileDestination); // Set destination to file
 
         //user story 2: Log messages with different levels
         fileLogger.log("Application started", LogLevel.INFO);
@@ -30,5 +38,11 @@ public class Main {
         //archive every 10 min
         fileLoggerDecorator.schedulePeriodicArchiving(600000);
         fileLogger.flush();
+
+        //switches to remote logging (dynamically change the log destination)
+        fileLogger.setLogDestination(remoteDestination); // Now sending logs to a remote server
+        fileLogger.log("Critical error reported to remote server", LogLevel.ERROR);
+
+
     }
 }
