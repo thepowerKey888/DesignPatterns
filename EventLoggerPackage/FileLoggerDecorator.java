@@ -14,7 +14,9 @@ class FileLoggerDecorator extends LoggerDecorator {
 
     @Override
     public void log(String message, LogLevel level) {
-        super.log(message, level);
+        super.log(message, level); //log message to decorated logger
+
+        //writes message to log file
         try (FileWriter writer = new FileWriter(filename, true)) {
             writer.write(level.name() + ": " + message + "\n");
         } catch (IOException e) {
