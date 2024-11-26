@@ -16,5 +16,7 @@ public class Main {
         Notification emailNotification = new EmailNotification(basicNotification);
         emailNotification.send("System update: Your account settings have been updated!");
 
+        Notification slackNotification = new SlackNotification(basicNotification);
+        slackNotification.send("System Update: Your account settings have been updated!");
     }
 }
