@@ -57,16 +57,15 @@ public class Logger {
 
     //log messages
     public void log(String message) {
-        String logMessage = "[" + getCurrentTimestamp() + "] [LOG] " + message;
-        logHistory.add(logMessage); //user story 3
-        logOutput.write(logMessage);
+        log("LOG", message);
     }
 
     //user story 2 log messages with different severity levels
     public void log(String severity, String message) {
-        String logMessage = "[" + getCurrentTimestamp() + "] [" + severity.toUpperCase() + "] " + message;  // Add timestamp to the log message
-        logHistory.add(logMessage);
-        logOutput.write(logMessage);
+        String timestamp = getCurrentTimestamp();
+        LogMessage logMessage = new LogMessage(timestamp, severity.toUpperCase(), message);
+        logHistory.add(logMessage.getFormattedMessage());
+        logOutput.write(logMessage.getFormattedMessage());
     }
 
     //retrieve the history of logged messages
