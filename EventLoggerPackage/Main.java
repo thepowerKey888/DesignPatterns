@@ -31,6 +31,7 @@ public class Main {
 
         //put logger output to file for retaining logs
         logger.setLogOutput(new FileLogOutput("logs.txt")); //user story 8 dynamically configuring log output
+        //logger.setLogOutput(new RemoteLogOutput("http://myserver.com/logs"));
         //user story 2
         logger.log("WARN", "This is a warning message");
         logger.log("ERROR", "An error has occurred");
@@ -40,7 +41,7 @@ public class Main {
             System.out.println(log);
         }
 
-       
+
         System.out.println("\nArchiving logs on-demand...");
         logger.archiveLogsOnDemand();
 
