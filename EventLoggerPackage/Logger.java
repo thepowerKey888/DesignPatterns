@@ -14,7 +14,7 @@ import java.util.Date;
 public class Logger {
 
     //user story 1
-    private static Logger instance;
+    private static volatile Logger instance;
     //user story 3
     private List<String> logHistory;
     //user story 4

@@ -7,6 +7,7 @@ public class Main {
         //user story 1
         Logger logger = Logger.getInstance();
 
+
         //multiple threads to log messages
         Thread thread1 = new Thread(() -> {
             logger.log("Thread 1", "Logging from thread 1");
