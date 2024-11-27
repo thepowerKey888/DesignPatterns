@@ -9,6 +9,8 @@ import java.util.Collections;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.ScheduledExecutorService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 public class Logger {
 
     //user story 1
@@ -18,15 +20,14 @@ public class Logger {
     //user story 4
     private LogOutput logOutput;
     private static final String ARCHIVE_FILE_PATH = "log_archive.txt"; //archive file
-
     private static final long ARCHIVE_INTERVAL = 5; //archive logs every 5 sec
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
     private Logger() {
         logHistory = Collections.synchronizedList(new ArrayList<>());
-        logOutput = new ConsoleLogOutput(); // Default to console output
+        logOutput = new ConsoleLogOutput();
 
-        // Schedule periodic log archiving every 60 seconds
+        //periodic log archiving every 5 seconds
         scheduler.scheduleAtFixedRate(this::archiveLogs, ARCHIVE_INTERVAL, ARCHIVE_INTERVAL, TimeUnit.SECONDS);
 
     }
@@ -43,6 +44,12 @@ public class Logger {
         return instance;
     }
 
+    //user story 9: get current timestamp
+    private String getCurrentTimestamp() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return formatter.format(new Date());  // Get the current timestamp in the desired format
+    }
+
     //user story 4: set a custom log output destination (if needed in the future)
     public void setLogOutput(LogOutput logOutput) {
         this.logOutput = logOutput;
@@ -50,14 +57,14 @@ public class Logger {
 
     //log messages
     public void log(String message) {
-        String logMessage = "[LOG] " + message;
+        String logMessage = "[" + getCurrentTimestamp() + "] [LOG] " + message;
         logHistory.add(logMessage); //user story 3
         logOutput.write(logMessage);
     }
 
     //user story 2 log messages with different severity levels
     public void log(String severity, String message) {
-        String logMessage = "[" + severity.toUpperCase() + "] " + message;
+        String logMessage = "[" + getCurrentTimestamp() + "] [" + severity.toUpperCase() + "] " + message;  // Add timestamp to the log message
         logHistory.add(logMessage);
         logOutput.write(logMessage);
     }
